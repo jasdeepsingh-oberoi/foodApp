@@ -11,8 +11,11 @@
     <title>Summary</title>
 </head>
 <body>
-    <h3>Added Item</h3>
-    <h3>${msg}</h3>
+<h3>Added Item</h3>
+<h3>${msg}</h3>
+
+<c:if test="${not empty menuList}">
+    <c:forEach var="item1" items="${menuList}">
         <table>
             <tr>
                 <td>ID :</td>
@@ -51,6 +54,7 @@
                 <td>${item1.is_deleted}</td>
             </tr>
         </table>
-
+    </c:forEach>
+</c:if>
 </body>
 </html>

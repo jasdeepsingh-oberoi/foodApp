@@ -1,4 +1,4 @@
-package cmpe275.controller;
+package cmpe275.Model;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,8 +10,11 @@ import javax.persistence.*;
  * Created by wanghao on 3/23/16.
  */
 @Entity
-@Table(name = "menu_item")
-@NamedQuery(name="MenuItem.findByName", query = "SELECT c From MenuItem c WHERE c.name = :name")
+@Table(name = "menu")
+@NamedQueries({
+        @NamedQuery(name = "MenuItem.findByName", query = "SELECT c From MenuItem c WHERE c.name = :name"),
+        @NamedQuery(name = "MenuItem.findByCategory", query = "SELECT c From MenuItem c WHERE c.category = :category"),
+})
 public class MenuItem {
         private Integer category;
         @Id

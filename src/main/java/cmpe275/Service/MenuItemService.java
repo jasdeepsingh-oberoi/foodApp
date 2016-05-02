@@ -1,17 +1,12 @@
-package cmpe275.controller;
+package cmpe275.Service;
 
-import org.hibernate.Criteria;
+import cmpe275.Model.MenuItem;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
 
 
 /**
@@ -30,10 +25,17 @@ public class MenuItemService {
         return result;
     }
 
+    public List<MenuItem> getMenuByCategory(Integer category) {
+        TypedQuery<MenuItem> query = em.createNamedQuery("MenuItem.findByCategory", MenuItem.class);
+        query.setParameter("category", category);
+        List<MenuItem> results = query.getResultList();
+        return results;
+    }
+
     @Transactional
     public MenuItem getById(String id) {
-        MenuItem p1 = null;
-        p1 = (MenuItem)em.find(MenuItem.class,id);
+
+        MenuItem p1 = (MenuItem)em.find(MenuItem.class,id);
         return p1;
     }
 
@@ -48,7 +50,7 @@ public class MenuItemService {
 
     @Transactional
     public void add(MenuItem p) {
-        System.out.println("in add method");
+//        System.out.println("in add method");
         em.persist(p);
     }
 
