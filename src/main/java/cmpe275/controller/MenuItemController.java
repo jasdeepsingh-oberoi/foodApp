@@ -21,51 +21,40 @@ public class MenuItemController {
 
     //Create Menu
     @RequestMapping(value = "/addMenuItem", method = RequestMethod.POST)
-    public ModelAndView postMenuItem(@ModelAttribute("item1") MenuItem item1) {
+    @ResponseBody
+    public String postMenuItem(@ModelAttribute("item1") MenuItem item1) {
         System.out.println("in add menu item");
 
         menuItemSvc.add(item1);
 
-        ModelAndView model = new ModelAndView("View/AddSuccess");
 
-        model.addObject("item1", item1);
-        return model;
+        return "Created";
     }
 
     //Read Menu By category
     @RequestMapping(value = "/queryMenuByCategory/{category}", method = RequestMethod.GET)
-    public ModelAndView queryMenuByCategory(@PathVariable("category") Integer category) {
-        List<MenuItem> itemList = null;
-        try {
-            itemList = menuItemSvc.getMenuByCategory(category);
-        } catch (Exception e) {
-            ModelAndView model = new ModelAndView("View/404.jsp");
-            return model;
+    @ResponseBody
+    public List<MenuItem>  queryMenuByCategory(@PathVariable("category") Integer category) {
+
+        List<MenuItem> itemList = menuItemSvc.getMenuByCategory(category);
+
+        if (itemList == null) {
+            throw new RuntimeException("Cannot find menu items");
         }
 
-            ModelAndView model = new ModelAndView("View/showMenu");
-
-            model.addObject("menuList", itemList);
-
-            return model;
+        return itemList;
     }
 
     @RequestMapping(value = "/showAllMenus", method = RequestMethod.GET)
-    public ModelAndView showAllMenus() {
+    @ResponseBody
+    public  List<MenuItem>  showAllMenus() {
 
-        List<MenuItem> menuList = null;
-        try {
-             menuList = menuItemSvc.getAll();
-        } catch (Exception e) {
-            ModelAndView model = new ModelAndView("View/404.jsp");
-            return model;
+        List<MenuItem>  menuList = menuItemSvc.getAll();
+
+        if (menuList == null) {
+            throw new RuntimeException("Menu List is empty");
         }
-
-
-        ModelAndView model = new ModelAndView("View/showMenu");
-
-        model.addObject("menuList", menuList);
-        return model;
+        return menuList;
     }
 
 
@@ -85,22 +74,25 @@ public class MenuItemController {
 
     //Delete Menu By ID
     @RequestMapping(value = "/deleteMenuItem/{id}", method = RequestMethod.DELETE)
-    public ModelAndView deleteMenuItem(@PathVariable("id") String id) {
-
+    @ResponseBody
+    public String deleteMenuItem(@PathVariable("id") String id) {
         MenuItem item1 = null;
         try {
-            item1 = menuItemSvc.getById(id);
+             item1 = menuItemSvc.getById(id);
         } catch(Exception e) {
-            ModelAndView model = new ModelAndView("View/404.jsp");
-            return model;
+
+            System.out.println("in error");
+            return "error";
+        }
+        System.out.println(item1.getName());
+        if (item1 == null) {
+            throw new RuntimeException("No item found");
         }
 
         item1.setIs_deleted(1);
         menuItemSvc.update(item1);
 
-        ModelAndView model = new ModelAndView("View/AddSuccess");
-        model.addObject("item1", item1);
-        return model;
+        return "ok";
     }
 
 
