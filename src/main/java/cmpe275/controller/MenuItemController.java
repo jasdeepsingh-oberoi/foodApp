@@ -31,11 +31,15 @@ public class MenuItemController {
         return "Created";
     }
 
+
     //Read Menu By category
     @RequestMapping(value = "/queryMenuByCategory/{category}", method = RequestMethod.GET)
     @ResponseBody
     public List<MenuItem>  queryMenuByCategory(@PathVariable("category") Integer category) {
-
+        if(category == 0) {
+            return showAllMenus();
+        }
+        System.out.println("query called");
         List<MenuItem> itemList = menuItemSvc.getMenuByCategory(category);
 
         if (itemList == null) {
@@ -69,6 +73,14 @@ public class MenuItemController {
         return model;
     }
 
+    @RequestMapping(value = "/menuHome", method = RequestMethod.GET)
+    public ModelAndView getMenuHome() {
+
+
+        ModelAndView model = new ModelAndView("View/menuHomepage");
+
+        return model;
+    }
 
 
 
