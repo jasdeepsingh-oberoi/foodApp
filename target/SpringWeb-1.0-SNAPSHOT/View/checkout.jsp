@@ -69,42 +69,6 @@
                 </div>
             </fieldset>
 
-            <div id="shipping-same">Same as Billing <input type="checkbox" id="same-as-billing" value=""/></div>
-
-            <fieldset id="fieldset-shipping">
-
-                <legend>Shipping</legend>
-
-                <div>
-                    <label for="sname">Name</label>
-                    <input type="text" name="sname" id="sname" data-type="string" data-message="This field cannot be empty" />
-                </div>
-                <div>
-                    <label for="semail">Email</label>
-                    <input type="text" name="semail" id="semail" data-type="expression" data-message="Not a valid email address" />
-                </div>
-                <div>
-                    <label for="scity">City</label>
-                    <input type="text" name="scity" id="scity" data-type="string" data-message="This field cannot be empty" />
-                </div>
-                <div>
-                    <label for="saddress">Address</label>
-                    <input type="text" name="saddress" id="saddress" data-type="string" data-message="This field cannot be empty" />
-                </div>
-                <div>
-                    <label for="szip">ZIP Code</label>
-                    <input type="text" name="szip" id="szip" data-type="string" data-message="This field cannot be empty" />
-                </div>
-                <div>
-                    <label for="scountry">Country</label>
-                    <select name="scountry" id="scountry" data-type="string" data-message="This field cannot be empty">
-                        <option value="">Select</option>
-                        <option value="US">USA</option>
-                        <option value="IT">Italy</option>
-                    </select>
-                </div>
-            </fieldset>
-
             <p><input type="submit" id="submit-order" value="Submit" class="btn" /></p>
 
         </form>
@@ -117,9 +81,13 @@
 
 </body>
 <script>
+
+
     $(function(){
         displayCheckoutCart();
     });
+
+
 
     function displayCheckoutCart() {
         $checkoutElement = $("#checkout-cart");
@@ -148,5 +116,54 @@
             $("#stotal")[0].innerHTML = "$" + 0.00;
         }
     }
+
+    $("#checkout-order-form").on("submit", function() {
+        var $form = $(this);
+        var valid = _validateForm($form);
+
+        if(!valid) {
+            return valid;
+        } else {
+            _saveFormData($form);
+        }
+    })
+
+    function _validateForm(form) {
+        var fields = {
+            expression: {
+                value: /^([\w-\.]+)@((?:[\w]+\.)+)([a-z]){2,4}$/
+            },
+            str: {
+                value: ""
+            }
+        };
+        var $visibleSet = form.find("fieldset");
+        var valid = true;
+
+        form.find(".message").remove();
+
+        $visibleSet.each(function() {
+            $(this).find(":input").each(function(){
+                var $input = $(this);
+                var type = $input.data("type");
+                var msg = $input.data("message");
+
+                if (type =="string") {
+                    if($input.val() == fields.str.value) {
+                        $("<span class='message' />").text(msg).insertBefore($input);
+                        valid = false;
+                    }
+                } else {
+                    if (!fields.expression.value.test($input.val())) {
+                        $("<span class='message' />").text(msg).insertBefore($input);
+                        valid = false;
+                    }
+                }
+            });
+        });
+        return valid;
+    }
+
+
 </script>
 </html>

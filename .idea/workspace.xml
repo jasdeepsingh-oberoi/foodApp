@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff286e2d-4b94-438f-b821-d8f9394f09b2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/View/checkout.jsp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/js/jquery.shop.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/shopcart.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmpe275/controller/MenuItemController.java" afterPath="$PROJECT_DIR$/src/main/java/cmpe275/controller/MenuItemController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/View/cart.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/View/cart.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/jquery.shop.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/jquery.shop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/View/cart.jsp" afterPath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/View/cart.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/js/jquery.shop.js" afterPath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/js/jquery.shop.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/View/checkout.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/View/checkout.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/View/checkout.jsp" afterPath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/View/checkout.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/View/menuHomepage.jsp" afterPath="$PROJECT_DIR$/target/SpringWeb-1.0-SNAPSHOT/View/menuHomepage.jsp" />
     </list>
     <ignored path="foodApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,49 +62,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menuHomepage.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="menuHomepage.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.875">
-              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="119" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.83516484">
+              <caret line="169" column="32" selection-start-line="169" selection-start-column="32" selection-end-line="169" selection-end-column="32" />
               <folding>
-                <marker date="1462410242000" expanded="true" signature="5207:5246" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5207:5429" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5207:5449" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5207:5461" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5207:5482" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5207:6646" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5267:5311" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5267:5342" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5267:5385" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5498:5714" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5498:5726" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5498:5735" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5498:5741" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5498:6609" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5757:6570" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5759:6570" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:5879" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6049" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6081" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6082" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6131" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6148" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6229" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6310" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6426" placeholder="..." />
-                <marker date="1462410242000" expanded="true" signature="5801:6528" placeholder="..." />
+                <marker date="1462470649000" expanded="true" signature="3925:5094" placeholder="..." />
+                <marker date="1462470649000" expanded="true" signature="3989:4119" placeholder="..." />
+                <marker date="1462470649000" expanded="true" signature="4256:5052" placeholder="..." />
+                <marker date="1462470649000" expanded="true" signature="4541:5009" placeholder="..." />
+                <marker date="1462470649000" expanded="true" signature="4593:4850" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.shop.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/jquery.shop.js">
+      <file leaf-file-name="shopcart.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/shopcart.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
-              <folding />
+              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="24" />
+              <folding>
+                <marker date="1462469949000" expanded="true" signature="1995:2701" placeholder="..." />
+                <marker date="1462469949000" expanded="true" signature="2034:2108" placeholder="..." />
+                <marker date="1462469949000" expanded="true" signature="2220:2684" placeholder="..." />
+                <marker date="1462469949000" expanded="true" signature="2412:2666" placeholder="..." />
+                <marker date="1462469949000" expanded="true" signature="2429:2573" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/View/cart.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-8.125">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+              <caret line="167" column="8" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -130,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="checkout.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="checkout.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/View/checkout.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57800514">
-              <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
+            <state vertical-scroll-proportion="-8.791667">
+              <caret line="126" column="18" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -202,11 +186,12 @@
         <option value="$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp.html" />
         <option value="$PROJECT_DIR$/src/main/java/cmpe275/Model/MenuItem.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/style.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/jquery.shop.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/View/cart.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cmpe275/controller/MenuItemController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/View/checkout.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/shopcart.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp" />
       </list>
     </option>
   </component>
@@ -235,7 +220,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="98" />
+    <option name="x" value="116" />
     <option name="y" value="23" />
     <option name="width" value="1230" />
     <option name="height" value="777" />
@@ -1195,15 +1180,15 @@
       <workItem from="1462248858740" duration="15266000" />
       <workItem from="1462300934857" duration="624000" />
       <workItem from="1462313460835" duration="34165000" />
-      <workItem from="1462410705594" duration="9364000" />
+      <workItem from="1462410705594" duration="16117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81904000" />
+    <option name="totallyTimeSpent" value="88657000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="98" y="23" width="1230" height="777" extended-state="0" />
+    <frame x="116" y="23" width="1230" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1215,7 +1200,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928678" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32776934" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32776934" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27104378" sideWeight="0.50790066" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1702,49 +1687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.875">
-          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="119" selection-end-column="5" />
-          <folding>
-            <marker date="1462410242000" expanded="true" signature="5207:5246" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5207:5429" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5207:5449" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5207:5461" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5207:5482" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5207:6646" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5267:5311" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5267:5342" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5267:5385" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5498:5714" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5498:5726" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5498:5735" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5498:5741" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5498:6609" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5757:6570" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5759:6570" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:5879" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6049" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6081" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6082" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6131" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6148" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6229" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6310" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6426" placeholder="..." />
-            <marker date="1462410242000" expanded="true" signature="5801:6528" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/jquery.shop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/View/FormWithDataByID.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -1766,16 +1708,44 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/View/cart.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.125">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <caret line="167" column="8" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/View/checkout.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57800514">
-          <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
+        <state vertical-scroll-proportion="-8.791667">
+          <caret line="126" column="18" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/shopcart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="24" />
+          <folding>
+            <marker date="1462469949000" expanded="true" signature="1995:2701" placeholder="..." />
+            <marker date="1462469949000" expanded="true" signature="2034:2108" placeholder="..." />
+            <marker date="1462469949000" expanded="true" signature="2220:2684" placeholder="..." />
+            <marker date="1462469949000" expanded="true" signature="2412:2666" placeholder="..." />
+            <marker date="1462469949000" expanded="true" signature="2429:2573" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/View/menuHomepage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.83516484">
+          <caret line="169" column="32" selection-start-line="169" selection-start-column="32" selection-end-line="169" selection-end-column="32" />
+          <folding>
+            <marker date="1462470649000" expanded="true" signature="3925:5094" placeholder="..." />
+            <marker date="1462470649000" expanded="true" signature="3989:4119" placeholder="..." />
+            <marker date="1462470649000" expanded="true" signature="4256:5052" placeholder="..." />
+            <marker date="1462470649000" expanded="true" signature="4541:5009" placeholder="..." />
+            <marker date="1462470649000" expanded="true" signature="4593:4850" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
