@@ -49,13 +49,13 @@
 			
 			// Method invocation
 			
-			this.createCart();
-			this.handleAddToCartForm();
+			//this.createCart();
+			//this.handleAddToCartForm();
 			this.handleCheckoutOrderForm();
 			this.emptyCart();
 			this.updateCart();
-			this.displayCart();
-			this.deleteProduct();
+			//this.displayCart();
+			//this.deleteProduct();
 			this.displayUserDetails();
 			this.populatePayPalForm();
 			
@@ -66,17 +66,17 @@
 		
 		// Creates the cart keys in the session storage
 		
-		createCart: function() {
-			if( this.storage.getItem( this.cartName ) == null ) {
-			
-				var cart = {};
-				cart.items = [];
-			
-				this.storage.setItem( this.cartName, this._toJSONString( cart ) );
-				this.storage.setItem( this.shippingRates, "0" );
-				this.storage.setItem( this.total, "0" );
-			}
-		},
+		//createCart: function() {
+		//	if( this.storage.getItem( this.cartName ) == null ) {
+		//
+		//		var cart = {};
+		//		cart.items = [];
+		//
+		//		this.storage.setItem( this.cartName, this._toJSONString( cart ) );
+		//		this.storage.setItem( this.shippingRates, "0" );
+		//		this.storage.setItem( this.total, "0" );
+		//	}
+		//},
 		
 		// Appends the required hidden values to the PayPal's form before submitting
 		
@@ -360,33 +360,33 @@
 		
 		// Adds items to the shopping cart
 		
-		handleAddToCartForm: function() {
-			var self = this;
-			self.$formAddToCart.each(function() {
-				var $form = $( this );
-				var $product = $form.parent();
-				var price = self._convertString( $product.data( "price" ) );
-				var name =  $product.data( "name" );
-				
-				$form.on( "submit", function() {
-					var qty = self._convertString( $form.find( ".qty" ).val() );
-					var subTotal = qty * price;
-					var total = self._convertString( self.storage.getItem( self.total ) );
-					var sTotal = total + subTotal;
-					self.storage.setItem( self.total, sTotal );
-					self._addToCart({
-						product: name,
-						price: price,
-						qty: qty
-					});
-					var shipping = self._convertString( self.storage.getItem( self.shippingRates ) );
-					var shippingRates = self._calculateShipping( qty );
-					var totalShipping = shipping + shippingRates;
-					
-					self.storage.setItem( self.shippingRates, totalShipping );
-				});
-			});
-		},
+		//handleAddToCartForm: function() {
+		//	var self = this;
+		//	self.$formAddToCart.each(function() {
+		//		var $form = $( this );
+		//		var $product = $form.parent();
+		//		var price = self._convertString( $product.data( "price" ) );
+		//		var name =  $product.data( "name" );
+		//
+		//		$form.on( "submit", function() {
+		//			var qty = self._convertString( $form.find( ".qty" ).val() );
+		//			var subTotal = qty * price;
+		//			var total = self._convertString( self.storage.getItem( self.total ) );
+		//			var sTotal = total + subTotal;
+		//			self.storage.setItem( self.total, sTotal );
+		//			self._addToCart({
+		//				product: name,
+		//				price: price,
+		//				qty: qty
+		//			});
+		//			var shipping = self._convertString( self.storage.getItem( self.shippingRates ) );
+		//			var shippingRates = self._calculateShipping( qty );
+		//			var totalShipping = shipping + shippingRates;
+		//
+		//			self.storage.setItem( self.shippingRates, totalShipping );
+		//		});
+		//	});
+		//},
 		
 		// Handles the checkout form by adding a validation routine and saving user's info into the session storage
 		
@@ -640,8 +640,8 @@
 		}
 	};
 	
-	$(function() {
-		var shop = new $.Shop( "#site" );
-	});
+	//$(function() {
+	//	var shop = new $.Shop( "#site" );
+	//});
 
 })( jQuery );

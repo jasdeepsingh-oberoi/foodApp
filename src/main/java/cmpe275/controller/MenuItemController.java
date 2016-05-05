@@ -75,13 +75,25 @@ public class MenuItemController {
 
     @RequestMapping(value = "/menuHome", method = RequestMethod.GET)
     public ModelAndView getMenuHome() {
-
+        List<MenuItem>  menuList = menuItemSvc.getAll();
+        System.out.println("in menuHome");
+        if (menuList == null) {
+            throw new RuntimeException("Menu List is empty");
+        }
 
         ModelAndView model = new ModelAndView("View/menuHomepage");
+        model.addObject("menus", menuList);
 
         return model;
     }
 
+    @RequestMapping(value = "/cart", method = RequestMethod.POST)
+    public ModelAndView getCart() {
+
+
+        ModelAndView model = new ModelAndView("View/cart");
+        return model;
+    }
 
 
     //Delete Menu By ID

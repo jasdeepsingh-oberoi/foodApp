@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
     <title>Winery</title>
     <meta charset="utf-8" />
@@ -19,98 +20,151 @@
         <form action = "" method = 'post' width = '200px'>
         Please select a type:
             <select id = 'category' >
+                <option value = '0'> All</option>
                 <option value = '1' >Drink</option>
                 <option value = '2' >Appetizer</option>
                 <option value = '3' >Main course</option>
                 <option value = '4' >Desert</option>
-                <option value = '0'> All</option>
             </select>
        </form>
 
 
-        <div id="returnresult">
-            <table id="products" style="width: 100%">
-                <ul>
+        <div id="products">
+            <ul>
+            <c:if test="${not empty menus}">
+                        <c:forEach var="item" items="${menus}">
+                            <li id="productlist">
+                                <div class='product-image'>
+                                    <img src=${item.image_path} alt="" />
+                                </div>
+                                <div class="product-description" data-name=${item.name} data-price=${item.unit_price}>
+                                     <h3 class="product-name">${item.name}</h3>
+                                    <p class="product-price">$${item.unit_price} </p>
+                                    <form class="add-to-cart" action="/cart" method="post">
+                                        <div>
+                                            <label for="qty-1">Quantity</label>
+                                            <%--<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />--%>
 
-                </ul>
+                                            <select name="qty-1" id="qty-1" class="qty" >
+                                                <option value = '1'> 1</option>
+                                                <option value = '2' >2</option>
+                                                <option value = '3' >3</option>
+                                            </select>
+                                        </div>
+                                        <p><input type="submit" value="Add to cart" class="btn" /></p>
+                                    </form>
+                                </div>
+                            </li>
+                        </c:forEach>
 
-            </table>
+                        </ul>
+                    <%--</table>--%>
+            </c:if>
         </div>
-
-
-
-
-
-
-
-
-
-        <%--<div id="products">--%>
-            <%--<ul>--%>
-                <%--<li>--%>
-                    <%--<div class="product-image">--%>
-                        <%--<img src="images/wine1.jpg" alt="" />--%>
-                    <%--</div>--%>
-                    <!--<div class="product-description" data-name="Wine #1" data-price="5">-->
-                        <!--<h3 class="product-name">Wine #1</h3>-->
-                        <!--<p class="product-price">&euro; 5</p>-->
-                        <!--<form class="add-to-cart" action="cart.html" method="post">-->
-                            <!--<div>-->
-                                <!--<label for="qty-1">Quantity</label>-->
-                                <!--<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />-->
-                            <!--</div>-->
-                            <!--<p><input type="submit" value="Add to cart" class="btn" /></p>-->
-                        <!--</form>-->
-                    <!--</div>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
 
 
     </div>
 </div>
 
 <script>
+
+
+    $('.add-to-cart').click(function() {
+        createCart();
+        var $form = $(this);
+        var $product = $form.parent();
+        var price = _convertString($product.data("price"));
+        var name = $product.data("name");
+        var qty = parseInt($form.find("#qty-1").val());
+        var subTotal = price * qty;
+        var pastTotal = _convertString(sessionStorage.getItem("SpringTotal"));
+        var total = subTotal + pastTotal;
+        sessionStorage.setItem("SpringTotal",total);
+        _addToCart({
+            product: name,
+            price: price,
+            qty:qty
+        });
+
+    })
+
+
+
+    function _addToCart( values ) {
+        var cart = sessionStorage.getItem("SpringCart");
+        var cartObject = JSON.parse( cart );
+        var cartCopy = cartObject;
+        var items = cartCopy.items;
+        items.push( values );
+
+        sessionStorage.setItem("SpringCart", JSON.stringify( cartCopy ) );
+        console.log(sessionStorage.getItem("SpringCart"));
+    }
+
+     function _convertString( numStr ) {
+        var num;
+        if( /^[-+]?[0-9]+\.[0-9]+$/.test( numStr ) ) {
+            num = parseFloat( numStr );
+        } else if( /^\d+$/.test( numStr ) ) {
+            num = parseInt( numStr, 10 );
+        } else {
+            num = Number( numStr );
+        }
+
+        if( !isNaN( num ) ) {
+            return num;
+        } else {
+            console.warn( numStr + " cannot be converted into a number" );
+            return false;
+        }
+    }
+
+
+    function createCart() {
+        if (sessionStorage.getItem("SpringCart") == null) {
+            var cart = {};
+            cart.items = [];
+            sessionStorage.setItem("SpringCart",JSON.stringify(cart));
+            sessionStorage.setItem("SpringTotal", "0");
+        }
+    }
+
     $('#category').change(function(){
-        $("#returnresult #products").empty();
+        $("#productlist").hide();
+        $("#products").empty();
         var action = "/queryMenuByCategory/";
         var category = $("#category").val();
         $.ajax({
             type: "GET",
             url: action + category,
             success: function (data) {
-
                 var valdata =JSON.stringify(data);
                 var objData = JSON.parse(valdata);
                 $.each(objData, function(index, item) {
                     var eachrow =
-                        "<li>"
-                        + "<div class='product-image'>"
-                        +   "<img src= '" + item.image_path + "' alt=''/>"
-                        + "</div>"
-                        + "<div class='product-description' data-name='' data-price=''>"
-                        +   "<h3 class='product-name'>" + item.name + "</h3>"
-                        +   "<p class='product-price'>$" + item.unit_price +"</p>"
-                        +   "<form class='add-to-cart' action='cart.html' method=post'>"
-                        +       "<div>"
-                        +           "<label for='qty-1'>Quantity</label>"
-                        +           "<input type='text' name='qty-1' id='qty-1' class='qty' value='1' />"
-                        +       "</div>"
-                        +       '<p><input type="submit" value="Add to cart" class="btn" /></p>'
-                        +    "</form>"
-                        + "</div>"
-                        +"</li>";
-
-//                   var eachrow = "<tr>"
-//                           + "<td>" + item.id + "</td>"
-//                           + "<td>" + item.name + "</td>"
-//                           + "<td>" + item.image_path + "</td>"
-//                           + "<td>" + item.unit_price + "</td>"
-//                           + "<td>" + item.calorie_count + "</td>"
-//                           + "</tr>";
-
+                            "<li>"
+                            + "<div class='product-image'>"
+                            +   '<img src=" ' + item.image_path + '" alt=""/>'
+                            + "</div>"
+                            + '<div class="product-description" data-name=item.name data-price=item.unit_price>'
+                            +   "<h3 class='product-name'>" + item.name + "</h3>"
+                            +   "<p class='product-price'>$" + item.unit_price +"</p>"
+                            +   '<form class="add-to-cart" action="/cart" method="post">'
+                            +       "<div>"
+                            +           "<label for='qty-1'>Quantity</label>"
+//                            +           "<input type='text' name='qty-1' id='qty-1' class='qty' value='1' />"
+                            +             '<select name="qty-1" id="qty-1" class="qty" >' +
+                            +                 '<option value = "1">1</option>' +
+                            +                 '<option value = "2">2</option>' +
+                            +                 '<option value = "3">3</option>' +
+                            +              "</select>"
+                            +       "</div>"
+                            +       '<p><input type="submit" value="Add to cart" class="btn" /></p>'
+                            +    "</form>"
+                            + "</div>"
+                            +"</li>";
                     console.log(eachrow);
-                $("#returnresult #products").append(eachrow);
+                    $("#products").append(eachrow);
                 });
             },
             error: function(e)
@@ -118,15 +172,13 @@
                 alert('Error: ' + e);
             }
         });
-
-
-
     })
 </script>
 
 
 </body>
+<div>
 <footer id="site-info">
     Copyright &copy; Spring Corp
 </footer>
-</html>
+</div>

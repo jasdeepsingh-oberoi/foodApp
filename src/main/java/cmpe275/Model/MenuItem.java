@@ -36,9 +36,7 @@ public class MenuItem {
         return is_deleted;
     }
 
-    public MenuItem() {
 
-    }
 
     public void setImage_path(String image_path) {
             this.image_path = image_path;
