@@ -95,6 +95,12 @@ public class MenuItemController {
         return model;
     }
 
+    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
+    public ModelAndView gocheckout() {
+        ModelAndView model = new ModelAndView("View/checkout");
+        return model;
+    }
+
 
     //Delete Menu By ID
     @RequestMapping(value = "/deleteMenuItem/{id}", method = RequestMethod.DELETE)

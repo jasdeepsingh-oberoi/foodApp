@@ -40,10 +40,10 @@
                     <input type="submit" name="delete" id="empty-cart" class="btn" value="Empty Cart" />
                 </li>
                 <li>
-                    <a href="index.html" class="btn">Continue Shopping</a>
+                    <a href="/menuHome" class="btn">Continue Shopping</a>
                 </li>
                 <li>
-                    <a href="checkout.html" class="btn">Go To Checkout</a>
+                    <a href="/checkout" class="btn">Go To Checkout</a>
                 </li>
             </ul>
         </form>
@@ -65,9 +65,17 @@
 
     function displayCart() {
         if($("#shopping-cart").length) {
+            var $tableCart = $("#shopping-cart").find(".shopping-cart");
+
+            if (sessionStorage.getItem("SpringCart") == null) {
+                $tableCart.find("tbody").html("");
+                $("#stotal")[0].innerHTML = "$" + 0.00;
+                return;
+            }
             var cart = JSON.parse(sessionStorage.getItem("SpringCart"));
             var items = cart.items;
-            var $tableCart = $("#shopping-cart").find(".shopping-cart");
+
+
             if (items.length == 0) {
                 $tableCart.find("tbody").html("");
                 $("#stotal")[0].innerHTML = "$" + 0.00;
@@ -92,10 +100,70 @@
         sessionStorage.clear();
     }
 
+    function _convertString( numStr ) {
+        var num;
+        if( /^[-+]?[0-9]+\.[0-9]+$/.test( numStr ) ) {
+            num = parseFloat( numStr );
+        } else if( /^\d+$/.test( numStr ) ) {
+            num = parseInt( numStr, 10 );
+        } else {
+            num = Number( numStr );
+        }
+
+        if( !isNaN( num ) ) {
+            return num;
+        } else {
+            console.warn( numStr + " cannot be converted into a number" );
+            return false;
+        }
+    }
+
+    function _extractPrice(element) {
+        var self = this;
+        var text = element.text();
+        var price = text.replace("$","").replace(" ","");
+        return price;
+    }
+
     $(document).ready(function() {
         $("#shopping-cart-actions #empty-cart").on("click", function() {
             _emptyCart();
         })
+
+
+        $("#update-cart").on("click", function() {
+            updateCart();
+        });
+
+        function updateCart() {
+            var $rows = $("#shopping-cart").find("tbody tr");
+            var cart = sessionStorage.getItem("SpringCart");
+            var total = sessionStorage.getItem("SpringTotal");
+
+            var updatedTotal = 0;
+            var totalQty = 0;
+            var updatedCart = {};
+            updatedCart.items = [];
+
+            $rows.each(function() {
+                var $row = $(this);
+                var pname = $.trim($row.find(".pname").text());
+                var pqty = _convertString($row.find(".pqty > .qty").val());
+                var pprice = _convertString(_extractPrice($row.find(".pprice")));
+
+                var cartObj = {
+                    product: pname,
+                    price: pprice,
+                    qty: pqty
+                };
+                updatedCart.items.push(cartObj);
+                var subTotal = pqty * pprice;
+                updatedTotal += subTotal;
+                totalQty +=pqty;
+            });
+            sessionStorage.setItem("SpringTotal", updatedTotal.toString());
+            sessionStorage.setItem("SpringCart", JSON.stringify(updatedCart));
+        }
 
         $(document).on("click", ".pdelete a", function(e) {
             e.preventDefault();
@@ -103,13 +171,14 @@
             var newItems = [];
             var cart = JSON.parse(sessionStorage.getItem("SpringCart"));
             var items = cart.items;
-            for (var i = 0;i < items.length; i++) {
+            for (var i = 0;i < items.length; ++i) {
                 var item = items[i];
                 var product = item.product;
                 if (product == productName) {
                     items.splice(i, 1);
                 }
             }
+
             newItems = items;
             var updatedCart = {};
             updatedCart.items = newItems;
@@ -118,9 +187,9 @@
             if (newItems.length == 0) {
                 updatedTotal = 0;
             } else {
-                for (var j = 0; j < newItems.length; j++) {
+                for (var j = 0; j < newItems.length; ++j) {
                     var prod = newItems[j];
-                    var sub = prod.price + prod.qty;
+                    var sub = prod.price * prod.qty;
                     updatedTotal += sub;
                 }
             }

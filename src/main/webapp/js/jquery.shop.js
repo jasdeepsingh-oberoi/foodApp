@@ -52,8 +52,8 @@
 			//this.createCart();
 			//this.handleAddToCartForm();
 			this.handleCheckoutOrderForm();
-			this.emptyCart();
-			this.updateCart();
+			//this.emptyCart();
+			//this.updateCart();
 			//this.displayCart();
 			//this.deleteProduct();
 			this.displayUserDetails();
