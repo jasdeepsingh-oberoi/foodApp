@@ -7,8 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.http.HttpStatus;
-
+import org.springframework.web.multipart.MultipartFile;
+import java.util.ArrayList;
+import java.awt.*;
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by wanghao on 3/22/16.
@@ -19,16 +28,37 @@ public class MenuItemController {
     @Autowired
     private MenuItemService menuItemSvc;
 
+
     //Create Menu
-    @RequestMapping(value = "/addMenuItem", method = RequestMethod.POST)
-    @ResponseBody
-    public String postMenuItem(@ModelAttribute("item1") MenuItem item1) {
+    @RequestMapping(value = "/adminAddMenuItem", method = RequestMethod.POST)
+    public ModelAndView postMenuItem(@RequestParam("file") MultipartFile file,
+                               @ModelAttribute("item1") MenuItem item1,
+                               HttpServletRequest request) throws IOException {
         System.out.println("in add menu item");
 
-        menuItemSvc.add(item1);
+        if(!file.isEmpty()) {
+            BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+
+            String originalName = file.getOriginalFilename();
+            System.out.println(originalName);
+
+            String rpath=request.getRealPath("/");
+            System.out.println(rpath);
+
+            String filePath =  "Images/" + originalName;
+            String totalPtah = rpath + filePath;
+            File destination = new File(totalPtah);
 
 
-        return "Created";
+
+            ImageIO.write(src, "png", destination);
+
+            item1.setImage_path(filePath);
+            menuItemSvc.add(item1);
+        } else {
+            throw new RuntimeException("image is empty");
+        }
+        return getMenuForm();
     }
 
 
@@ -53,7 +83,8 @@ public class MenuItemController {
     @ResponseBody
     public  List<MenuItem>  showAllMenus() {
 
-        List<MenuItem>  menuList = menuItemSvc.getAll();
+        List<MenuItem>  originalmenuList = menuItemSvc.getAll();
+        List<MenuItem> menuList = getViableMenu(originalmenuList);
 
         if (menuList == null) {
             throw new RuntimeException("Menu List is empty");
@@ -61,28 +92,48 @@ public class MenuItemController {
         return menuList;
     }
 
+    @RequestMapping(value = "/adminAddMenuForm", method = RequestMethod.GET)
+    public  ModelAndView  toAddMenuForm() {
+        ModelAndView model = new ModelAndView("View/adminAddMenuForm");
+        return model;
+    }
 
+    private List<MenuItem> getViableMenu(List<MenuItem> menus) {
+        List<MenuItem> newMenuList = new ArrayList<MenuItem>();
+        for (MenuItem menu: menus) {
+            if (menu.getIs_deleted() == 0) {
+                newMenuList.add(menu);
+            }
+        }
+        return newMenuList;
+    }
 
     //obtain menuForm
-    @RequestMapping(value = "/menuForm", method = RequestMethod.GET)
+    @RequestMapping(value = "/adminMenu", method = RequestMethod.GET)
     public ModelAndView getMenuForm() {
         System.out.println("in menu form");
+        List<MenuItem>  menuList = menuItemSvc.getAll();
+        List<MenuItem> finalMenuList = getViableMenu(menuList);
+        if (finalMenuList == null) {
+            throw new RuntimeException("Menu List is empty");
+        }
 
-        ModelAndView model = new ModelAndView("View/ProfileTemplate");
-
+        ModelAndView model = new ModelAndView("View/adminMenu");
+        model.addObject("menus", finalMenuList);
         return model;
     }
 
     @RequestMapping(value = "/menuHome", method = RequestMethod.GET)
     public ModelAndView getMenuHome() {
         List<MenuItem>  menuList = menuItemSvc.getAll();
-        System.out.println("in menuHome");
-        if (menuList == null) {
+        List<MenuItem> finalMenuList = getViableMenu(menuList);
+
+        if (finalMenuList == null) {
             throw new RuntimeException("Menu List is empty");
         }
 
         ModelAndView model = new ModelAndView("View/menuHomepage");
-        model.addObject("menus", menuList);
+        model.addObject("menus", finalMenuList);
 
         return model;
     }

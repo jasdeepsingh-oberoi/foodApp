@@ -36,7 +36,13 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+
     <!-- Enable @Transactional annotation -->
     <tx:annotation-driven/>
+
+
 
 </beans>
