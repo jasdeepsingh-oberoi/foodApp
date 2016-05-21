@@ -63,7 +63,7 @@
 <!--Javascripts-->
 <%-- <script src="<c:url value= '/resources/js/jquery.js' />"></script> --%>
 <script src="<c:url value= '/resources/js/modernizr.js' />"></script>
-<%-- <script src="<c:url value= '/resources/js/bootstrap.js' />"></script> --%>
+<script src="<c:url value= '/resources/js/bootstrap.js' />"></script>
 <script src="<c:url value= '/resources/js/menustick.js' />"></script>
 <script src="<c:url value= '/resources/js/parallax.js' />"></script>
 <script src="<c:url value= '/resources/js/easing.js' />"></script>
@@ -205,7 +205,7 @@
 										<div class="col-sm-4" style="width: 85%;">
 											<img style="height: 30%; padding-bottom: 3%;"
 												src="<c:url value= '{{ item.image_path }}' />" alt="" />
-											<!-- <figcaption><h3>Thundercats next level</h3><p>Portland nulla butcher ea XOXO, consequat Bushwick Pinterest elit twee pickled direct. </p></figcaption> -->
+
 											<figcaption style="background: black; height: 38%">
 												<div style="text-align: center;">
 													<h3 class="product-name">{{ item.name }}</h3>
@@ -224,14 +224,17 @@
 															ng-model="quantity" ng-init="quantity='1'" value="1" />
 
 													</div>
-													<p>
+													<div>
 														<input type="submit"
 															ng-click="ctrl.addToCart(item,quantity)"
 															value="Add to cart" class="btn"
-															style="background-color: #cc580c;" />
-													</p>
+															style="background-color: #cc580c;" /> <label
+															ng-show="ctrl.checkAdded(item.id)">Added to Cart</label>
+													</div>
 													<!-- </form> -->
+
 												</div>
+
 											</figcaption>
 										</div>
 									</figure>
@@ -242,16 +245,16 @@
 						</ul>
 					</section>
 					<!-- // end small images -->
-
-
-
 				</div>
 				<!-- // grid-gallery -->
 			</div>
-			<div class="row">
-				<div class="col-sm-offset-9">
+			<div class="row" ng-show="ctrl.checkOutButton()">
+				<div class="col-sm-offset-8 col-sm-1">
 					<input type="submit" class="btn btn-default" value="Checkout"
 						ng-click="ctrl.checkout()" />
+				</div>
+				<div class="col-sm-2">
+					<a href="#reviewcart">Review your Cart</a>
 				</div>
 			</div>
 		</section>
@@ -265,61 +268,39 @@
 					<h2>Review Cart</h2>
 					<img class="dividerline"
 						src="<c:url value= '/resources/img/sep.png' />" alt="">
+					
+					<table class="table table-bordered" ng-show="ctrl.checkOutButton()">
+						<thead>
+							<tr>
 
-
-
-
-					<div>
-						<div class="row">
-							<div class="col-sm-3">
-								<strong>Name</strong>
-							</div>
-							<div class="col-sm-3">
-								<strong>Quantity</strong>
-							</div>
-							<div class="col-sm-3">
-								<strong>Price</strong>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="row"
-									ng-repeat="item1 in ctrl.finalCart.name track by $index">
-									{{item1}}</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="row"
-									ng-repeat="item2 in ctrl.finalCart.qty track by $index">
-									{{item2}}</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="row"
-									ng-repeat="item3 in ctrl.finalCart.price track by $index">
-									$ {{item3}}</div>
-							</div>
-							<div class="col-sm-3">
-								<div style="text-align: -webkit-center;"
-									ng-repeat="item in ctrl.finalCart.id track by $index">
-									<a href="" ng-click="ctrl.removeFromCart(item)"><span
+								<th>Name</th>
+								<th>Quantity</th>
+								<th>Price</th>
+								<th>Remove Item</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in ctrl.finalCart.items track by $index">
+								<td>{{item.name}}</td>
+								<td>{{item.qty}}</td>
+								<td>$ {{item.price}}</td>
+								<td>
+								<div style="text-align: -webkit-center;">
+									<a href="" ng-click="ctrl.removeFromCart(item.id)"><span
 										aria-hidden="true" class="glyphicon glyphicon-remove"
 										style="color: chocolate;"></span></a>
 								</div>
-							</div>
-						</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="row">
+						<div class="col-sm-offset-3 col-sm-1">
+						<span>Total</span></div>
+						<div class="col-sm-offset-3 col-sm-1">
+						<span>$ {{ ctrl.totalPrice }}</span></div>
 					</div>
-
-					<!-- <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" name="algorithm" ng-model="algorithm" value="svc">SVC
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="algorithm" ng-model="algorithm" value="dec">Decision Tree
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="algorithm" ng-model="algorithm" value="knn">K-Nearest Neighbour
-                                </label>
-                            </div> -->
-
 					<div class="row"
 						style="border-top: 1px solid #ccc; padding-top: 4%;">
 						<div class="col-sm-9">
@@ -328,14 +309,16 @@
 									name="usertime" ng-model="ctrl.userinputfortime" value="asap">As
 									soon as possible
 								</label> <label class="radio-inline"> <input type="radio"
-									name="usertime" ng-model="ctrl.userinputfortime" value="at">Specific date and time
+									name="usertime" ng-model="ctrl.userinputfortime" value="at">Specific
+									date and time
 								</label><label class="radio-inline"> <input type="radio"
-									name="usertime" ng-model="ctrl.userinputfortime" value="on">Specific date
+									name="usertime" ng-model="ctrl.userinputfortime" value="on">Specific
+									date
 								</label>
 							</div>
 							<div ng-if="ctrl.showtime">
 								<ng-timepicker ng-model="ctrl.pickuptime" step="1"
-									init-time="06:00"></ng-timepicker>
+									init-time="06:00" theme="green"></ng-timepicker>
 								{{ ctrl.pickuptime }}
 							</div>
 						</div>
@@ -345,26 +328,51 @@
 								max="2016-06-09"></input>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" ng-show="ctrl.checkOutButton()">
 						<div class="col-sm-offset-10">
 							<input type="button" class="btn btn-warning" value="Place Order"
-								ng-click="ctrl.placeOrder(ctrl.hope)" />
+								ng-click="ctrl.placeOrder()" />
 						</div>
 					</div>
 					<div ng-if="ctrl.displayTime">
-						<span>Your Order will be ready by: {{ ctrl.dispTime |
-							date:'MM/dd/yyyy HH:mm:ss'}}</span>
+						<span>Your Order will be ready by: {{ ctrl.dispTime | date:'MM/dd/yyyy HH:mm:ss'}}</span>
 					</div>
 					<div ng-if="ctrl.showErrorMsg">
-						<span>The earliest time possible: {{
-							ctrl.dispTime | date:'MM/dd/yyyy HH:mm:ss'}}</span>
+						<span>The earliest time possible: {{ ctrl.dispTime | date:'MM/dd/yyyy HH:mm:ss'}}</span><br>
+						<span>Please confirm or <a href="#menuheading">revise</a> the order</span>
+						<div class="row" ng-if="ctrl.showConfirmButton">
+							<button class="btn btn-warning" value="Confirm" ng-click="ctrl.confirmOrder()">Confirm</button>
+						</div>
+						<br>
+						<div class="row" ng-if="ctrl.showCancelButton">
+							<button class="btn btn-danger" value="Cancel"
+								ng-click="ctrl.cancelOrder()">Cancel</button>
+						</div>
 					</div>
 					<div ng-if="ctrl.displayErrMsg">
 						<span>Due to unavailability of free slots, the order cannot
 							be fulfilled today.</span><br> <span>Please try again with a
 							different date!</span>
+						<div class="row" ng-if="ctrl.showCancelButton">
+							<button class="btn btn-danger" value="Cancel"
+								ng-click="ctrl.cancelOrder()">Cancel</button>
+						</div>
 					</div>
+					<div ng-if="ctrl.showUnavailable">
+						<span>Some of the items in your cart are not available
+							mentioned below</span><br>
+						<div>
+							<div class="row"
+								ng-repeat="item in ctrl.itemNotAvailable track by $index">
+								{{item}}</div>
+						</div>
+						<span>Please <a href="#menuheading">revise</a> your order</span>
+						<div class="row" ng-if="ctrl.showCancelButton">
+							<button class="btn btn-danger" value="Cancel" ng-click="ctrl.cancelOrder()">Cancel
+							</button>
+						</div>
 
+					</div>
 				</div>
 			</div>
 		</section>

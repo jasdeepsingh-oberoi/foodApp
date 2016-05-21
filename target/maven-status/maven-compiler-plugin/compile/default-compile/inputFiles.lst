@@ -1,8 +1,13 @@
+D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\aspect\logging\OrderLoggingAspect.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\controller\MenuItemController.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\model\User.java
+D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\aspect\exception\MenuItemExceptionAspect.java
+D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\aspect\logging\MenuItemLoggingAspect.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\service\OrderService.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\model\UserOrderDetails.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\util\JsonDateSerializer.java
+D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\aspect\exception\UserExceptionAspect.java
+D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\aspect\exception\OrderExceptionAspect.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\model\MenuItem.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\controller\IndexController.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\dao\impl\UserDaoImpl.java
@@ -18,6 +23,7 @@ D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\model\OrderDet
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\service\MenuItemService.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\dao\impl\OrderDaoImpl.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\service\EmailSendingService.java
+D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\aspect\logging\UserLoggingAspect.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\dao\impl\MenuItemDaoImpl.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\dao\OrderDao.java
 D:\SpringWorkspace\termprj\src\main\java\edu\sjsu\cmpe275\termprj\model\Order.java

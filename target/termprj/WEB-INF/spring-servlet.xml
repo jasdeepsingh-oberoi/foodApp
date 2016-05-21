@@ -14,26 +14,20 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+
+	<aop:aspectj-autoproxy />
+
 	<context:annotation-config />
 	<context:component-scan base-package="edu.sjsu.cmpe275.termprj" />
 	<mvc:annotation-driven />
 	<!-- content-negotiation-manager="contentNegotiationManager" -->
 
-	<!-- <bean id="contentNegotiationManager"
-		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-		<property name="favorPathExtension" value="false" />
-		<property name="favorParameter" value="true" />
-		<property name="parameterName" value="brief" />
-		<property name="ignoreAcceptHeader" value="true" />
-		<property name="useJaf" value="false" />
-		<property name="defaultContentType" value="text/html" />
-
-		<property name="mediaTypes">
-			<map>
-				<entry key="true" value="text/plain" />
-			</map>
-		</property>
-	</bean> -->
+	<!-- <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean"> 
+		<property name="favorPathExtension" value="false" /> <property name="favorParameter" 
+		value="true" /> <property name="parameterName" value="brief" /> <property 
+		name="ignoreAcceptHeader" value="true" /> <property name="useJaf" value="false" 
+		/> <property name="defaultContentType" value="text/html" /> <property name="mediaTypes"> 
+		<map> <entry key="true" value="text/plain" /> </map> </property> </bean> -->
 
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -42,9 +36,9 @@
 		<property name="prefix" value="/resources/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-<!-- 	<mvc:resources mapping="/resources/**" location="/resources/"/>
-	<mvc:annotation-driven /> --> 
+
+	<!-- <mvc:resources mapping="/resources/**" location="/resources/"/> <mvc:annotation-driven 
+		/> -->
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
@@ -79,7 +73,7 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="emailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
@@ -94,20 +88,24 @@
 			</props>
 		</property>
 	</bean>
-	
+
 	<bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    </bean>
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
 
-	<!-- <bean id="userService" class="edu.sjsu.cmpe275.termprj.service.impl.UserServiceImpl" /> -->
-	<!-- <bean id="userServiceImpl" class="edu.sjsu.cmpe275.termprj.service.impl.UserServiceImpl" /> -->
-	<!-- <bean id="organizationServiceImpl" class="com.cmpe275.lab2.service.impl.OrganizationServiceImpl" />
-	<bean id="friendServiceImpl" class="com.cmpe275.lab2.service.impl.FriendServiceImpl" />  -->
+	<!-- <bean id="userService" class="edu.sjsu.cmpe275.termprj.service.impl.UserServiceImpl" 
+		/> -->
+	<!-- <bean id="userServiceImpl" class="edu.sjsu.cmpe275.termprj.service.impl.UserServiceImpl" 
+		/> -->
+	<!-- <bean id="organizationServiceImpl" class="com.cmpe275.lab2.service.impl.OrganizationServiceImpl" 
+		/> <bean id="friendServiceImpl" class="com.cmpe275.lab2.service.impl.FriendServiceImpl" 
+		/> -->
 
 
-	<!-- <bean id="userDAOImpl" class="edu.sjsu.cmpe275.termprj.dao.impl.UserDaoImpl" />
-	<bean id="organizationDAOImpl" class="com.cmpe275.lab2.dao.impl.OrganizationDAOImpl" />
-	<bean id="friendDAOImpl" class="com.cmpe275.lab2.dao.impl.FriendDAOImpl" /> -->
+	<!-- <bean id="userDAOImpl" class="edu.sjsu.cmpe275.termprj.dao.impl.UserDaoImpl" 
+		/> <bean id="organizationDAOImpl" class="com.cmpe275.lab2.dao.impl.OrganizationDAOImpl" 
+		/> <bean id="friendDAOImpl" class="com.cmpe275.lab2.dao.impl.FriendDAOImpl" 
+		/> -->
 
 
 </beans>

@@ -28,7 +28,9 @@
 <script type="text/javascript"
 	src="<c:url value='/resources/js/ngTimepicker.min.js' />"></script>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+	rel="stylesheet">
 
 <!-- Date Time Picker ends -->
 
@@ -242,7 +244,7 @@
 						</div>
 						<div class="col-sm-2">
 							<input type="button" class="btn btn-warning"
-								ng-click="ctrl.getReportByCategory()" value="Show Report" />
+								ng-click="ctrl.getReportByCategory(ctrl.report_category)" value="Show Report" />
 						</div>
 					</div>
 					<div class="row" style="padding-top: 5%;"
@@ -301,33 +303,67 @@
 						</div>
 					</div>
 					<div class="row" style="padding-top: 5%;"
-						ng-if="ctrl.showPopRep == true">
-						<div class="col-sm-offset-3 col-sm-6">
+						ng-if="ctrl.showStatRep == true">
+						<div>
 
-							<table class="table table-hover">
+							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th ng-click="ctrl.sort('item_name')">Item
-										 <span class="glyphicon sort-icon"  ng-class="{'glyphicon-chevron-up':ctrl.reverse,'glyphicon-chevron-down':!ctrl.reverse}"></span>
+										<th>Id</th>
+										<th>Email</th>
+										<th ng-click="ctrl.sort('order_date')">Order Time <span
+											class="glyphicon sort-icon"
+											ng-class="{'glyphicon-chevron-up':ctrl.reverse,'glyphicon-chevron-down':!ctrl.reverse}"></span>
 										</th>
-										<th ng-click="sort('item_count')">Order Count
-										<span class="glyphicon glyphicon-sort" ng-show="sortKey=='item_count'"></span>
+										<th ng-click="ctrl.sort('start_time')">Fulfillment Start
+											Time <span class="glyphicon sort-icon"
+											ng-class="{'glyphicon-chevron-up':ctrl.reverse,'glyphicon-chevron-down':!ctrl.reverse}"></span>
 										</th>
+										<th>Ready Time</th>
+										<th>Pickup Time</th>
+										<th>Price</th>
+										<th>Status</th>
+										<th>Menu</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="item in ctrl.reportdata.items | orderBy:ctrl.sortKey:ctrl.reverse | startFrom:ctrl.currentPage1*10 | limitTo:10 track by [$index]">
-										<td>{{item.item_name}}</td>
-										<td>{{item.item_count}}</td>
+									<tr
+										ng-repeat="item in ctrl.statReportdata.items | orderBy:ctrl.sortKey:ctrl.reverse | startFrom:ctrl.currentPage1*5 | limitTo:5 track by [$index]">
+										<td>{{item.order_id}}</td>
+										<td>{{item.email}}</td>
+										<td>{{item.order_placed_date | date:'MM/dd/yyyy HH:mm:ss'}}</td>
+										<td>{{item.start_time | date:'MM/dd/yyyy HH:mm:ss'}}</td>
+										<td>{{item.end_time | date:'MM/dd/yyyy HH:mm:ss'}}</td>
+										<td>{{item.pickup_time | date:'MM/dd/yyyy HH:mm:ss'}}</td>
+										<td>$ {{item.total_price}}</td>
+										<td>{{ctrl.status_mapping[item.status]}}</td>
+										<td><a style="text-decoration: underline;" role="button"
+											data-toggle="modal" data-target="#menuDet"
+											ng-click="ctrl.showMenuDet(item)">Click Here</a></td>
+									</tr>
+									<tr >
+										 <div ng-if="ctrl.menuDetailDiv == true" class="row">
+										<div class="col-sm-offset-2 col-sm-8">
+											<div class="row panel panel-warning" style=" border: none">
+												<div class="col-sm-offset-3 col-sm-3 panel-heading">Menu Item</div>
+												<div class="col-sm-3 panel-heading">Quantity</div>
+											</div>
+											<div class="row" ng-repeat="item1 in ctrl.menuDet.data track by [$index]" style="border-bottom: 1px solid #ccc; padding-top: 4%;">
+												<div class="col-sm-offset-2 col-sm-4">{{item1.menu_item_name}}</div>
+												<div class="col-sm-4">{{item1.quantity}}</div>
+											</div>
+											<div style="padding-bottom:50px;"></div>
+											</div>
+										</div> 
 									</tr>
 								</tbody>
 							</table>
-							  <button ng-disabled="ctrl.currentPage1 == 0"
+							<button ng-disabled="ctrl.currentPage1 == 0"
 								ng-click="ctrl.currentPage1=ctrl.currentPage1-1">Previous</button>
 							<!-- {{ctrl.currentPage+1}}/{{ctrl.numberOfPages1()}} -->
 							<button ng-click="ctrl.currentPage1=ctrl.currentPage1+1"
-								ng-disabled="ctrl.currentPage1 >= ctrl.reslength1/9">Next
-							</button>  
+								ng-disabled="ctrl.currentPage1 >= ctrl.reslength1/4">Next
+							</button>
 						</div>
 					</div>
 				</div>

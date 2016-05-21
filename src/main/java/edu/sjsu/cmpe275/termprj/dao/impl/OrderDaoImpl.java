@@ -142,9 +142,9 @@ public class OrderDaoImpl implements OrderDao {
 			Query query = session.createQuery(hql);
 			query.setParameterList("ids", listIds);
 			dbMenuList = query.list();	
-			System.out.println("in orderaoimpl b4");
+			/*System.out.println("in orderaoimpl b4");
 			System.out.println(dbMenuList.get(0).getName());
-			System.out.println("in orderaoimpl after");
+			System.out.println("in orderaoimpl after");*/
 		}catch(HibernateException e){
 			e.printStackTrace();
 		}finally {

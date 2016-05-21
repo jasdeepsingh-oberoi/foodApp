@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,42 +20,50 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "order_details")
 public class Order implements Serializable{
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "order_id", unique = true, nullable = false)
-    private int order_id;
-    @Column(name = "chef_id")
-    private String chef_id;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "start_time")
-    private Date  start_time;
-    @Column(name = "end_time")
-    private Date  end_time;
-    @Column(name = "pickup_time")
-    private Date  pickup_time;
-    @Column(name = "status")
-    private String status;
-    @Column(name = "order_placed_date")
-    private Date order_placed_date;
-    @Column (name = "total_price")
-    private String total_price;
-    
-    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "order")
-    @JsonIgnoreProperties(value = "order")
-    private List<UserOrderDetails> orderDetailsList = new ArrayList<UserOrderDetails>();
-    
-    
-    /*@Column(name = "menu_id")
-    private String menu_id;*/
-    @Column (name = "order_date")
-    private Date order_date;
-    
-    public void addDetails(UserOrderDetails uoDetails){
-    	uoDetails.setOrder(this);
-    	this.orderDetailsList.add(uoDetails);
-    }
-    
-    public List<UserOrderDetails> getOrderDetailsList() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "order_id", unique = true, nullable = false)
+	private int order_id;
+	
+	@Column(name = "chef_id")
+	private String chef_id;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "start_time")
+	private Date  start_time;
+	
+	@Column(name = "end_time")
+	private Date  end_time;
+	
+	@Column(name = "pickup_time")
+	private Date  pickup_time;
+	
+	@Column(name = "status")
+	private String status;
+	
+	@Column(name = "total_price")
+	private String total_price;
+	
+	@Column(name = "order_placed_date")
+	private Date order_placed_date;
+	
+	@Column (name = "order_date")
+	private Date order_date;
+	
+	@Column (name = "display_end_time")
+	private Date display_end_time;
+
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "order")
+	@JsonIgnoreProperties(value = "order")
+	private List<UserOrderDetails> orderDetailsList = new ArrayList<UserOrderDetails>();
+
+	public void addDetails(UserOrderDetails uoDetails){
+		uoDetails.setOrder(this);
+		this.orderDetailsList.add(uoDetails);
+	}
+
+	public List<UserOrderDetails> getOrderDetailsList() {
 		return orderDetailsList;
 	}
 	public void setOrderDetailsList(List<UserOrderDetails> orderDetailsList) {
@@ -111,6 +118,14 @@ public class Order implements Serializable{
 		this.order_date = order_date;
 	}
 
+	public String getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(String total_price) {
+		this.total_price = total_price;
+	}
+	
 	public Date getOrder_placed_date() {
 		return order_placed_date;
 	}
@@ -119,12 +134,15 @@ public class Order implements Serializable{
 		this.order_placed_date = order_placed_date;
 	}
 
-	public String getTotal_price() {
-		return total_price;
+	public Date getDisplay_end_time() {
+		return display_end_time;
 	}
 
-	public void setTotal_price(String total_price) {
-		this.total_price = total_price;
+	public void setDisplay_end_time(Date display_end_time) {
+		this.display_end_time = display_end_time;
 	}
+
+	
+	
 	
 }

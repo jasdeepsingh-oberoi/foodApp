@@ -3,6 +3,9 @@ package edu.sjsu.cmpe275.termprj.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import edu.sjsu.cmpe275.termprj.model.Order;
 import edu.sjsu.cmpe275.termprj.model.OrderDetails;
 import edu.sjsu.cmpe275.termprj.model.MenuItem;
@@ -17,4 +20,5 @@ public interface OrderService {
 	public List<MenuItem> getPrepTime(List<MenuItem> listMenuItem);
 	public Order saveCompleteOrder(OrderDetails orderDetails);
 	public List<Order> showUserHistory(String email,String status);
+	public Order confirmOrder(Order order);
 }

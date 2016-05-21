@@ -10,8 +10,8 @@ public class OrderDetails {
 	private int totalPrepTime;
 	private Date pickupTime;
 	private Date startPrepTime;
+	private String totalPrice;
 	private ArrayList<MenuDetails> menuDetails;
-
 
 	public String getEmail() {
 		return email;
@@ -50,5 +50,10 @@ public class OrderDetails {
 	public void setStartPrepTime(Date startPrepTime) {
 		this.startPrepTime = startPrepTime;
 	}
-
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }

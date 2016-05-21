@@ -77,7 +77,7 @@ public class OrderServiceImpl implements OrderService{
 		int chef1 =0, chef2=0,chef3=0;
 		try {
 			List<Order> orders = orderDao.fetchChefAvailability(orderDetails);
-			System.out.println(orders);
+
 			if(orders == null || orders.size() == 0){
 				flag = true;
 				finalchefId = "1";
@@ -236,14 +236,20 @@ public class OrderServiceImpl implements OrderService{
 
 			if(finalStartTime != null && finalchefId != null){
 				order.setEmail(orderDetails.getEmail());
+				order.setTotal_price(orderDetails.getTotalPrice());
 				//System.out.println("date part");
 				Date orderDate = new Date();
+				SimpleDateFormat sdf2 = new SimpleDateFormat("dd-M-yyyy HH:mm:ss");
+				Date now = new Date();
+				now = sdf2.parse(sdf2.format(now));
 				orderDate = sdfForDate.parse(sdfForDate.format(orderDetails.getPickupTime()));
 				//System.out.println(orderDate);
 				order.setOrder_date(orderDate);
+				order.setOrder_placed_date(null);
 				order.setStatus("0");
 				order.setPickup_time(orderDetails.getPickupTime());
 				order.setChef_id(finalchefId);
+				order.setOrder_placed_date(now);
 
 				Date newEndTime = new Date(finalStartTime.getTime() + orderDetails.getTotalPrepTime()*60000L);
 
@@ -257,35 +263,39 @@ public class OrderServiceImpl implements OrderService{
 				System.out.println(finalchefId);
 				System.out.println("newEndTime");
 				System.out.println(newEndTime);
-				
-				
 
+
+
+				/*if(newEndTime.getTime() <= orderDetails.getPickupTime().getTime()){*/
+				List<UserOrderDetails> menuDetForOrder = new ArrayList<UserOrderDetails>();
+
+				for(int x=0;x<orderDetails.getMenuDetails().size();x++){
+					System.out.println(orderDetails.getMenuDetails().size());
+					System.out.println(orderDetails);
+					System.out.println(orderDetails.getMenuDetails());
+
+					UserOrderDetails userdet = new UserOrderDetails();
+					userdet.setMenu_item_name(orderDetails.getMenuDetails().get(x).getName());
+					userdet.setUnit_price(orderDetails.getMenuDetails().get(x).getUnit_price());
+					userdet.setQuantity(orderDetails.getMenuDetails().get(x).getQuantity());
+					userdet.setEmail(orderDetails.getEmail());
+					menuDetForOrder.add(userdet);
+
+					System.out.println(userdet);
+				}
+
+				for(UserOrderDetails userOrderDetails : menuDetForOrder){
+					order.addDetails(userOrderDetails);
+				}
 				if(newEndTime.getTime() <= orderDetails.getPickupTime().getTime()){
-					List<UserOrderDetails> menuDetForOrder = new ArrayList<UserOrderDetails>();
-
-					for(int x=0;x<orderDetails.getMenuDetails().size();x++){
-						System.out.println(orderDetails.getMenuDetails().size());
-						System.out.println(orderDetails);
-						System.out.println(orderDetails.getMenuDetails());
-
-						UserOrderDetails userdet = new UserOrderDetails();
-						userdet.setMenu_item_name(orderDetails.getMenuDetails().get(x).getName());
-						userdet.setUnit_price(orderDetails.getMenuDetails().get(x).getUnit_price());
-						userdet.setQuantity(orderDetails.getMenuDetails().get(x).getQuantity());
-						userdet.setEmail(orderDetails.getEmail());
-						menuDetForOrder.add(userdet);
-						
-						System.out.println(userdet);
-					}
-					
-					for(UserOrderDetails userOrderDetails : menuDetForOrder){
-						order.addDetails(userOrderDetails);
-					}
 					//order.setOrderDetailsList(menuDetForOrder);
 					savedDbOrder = orderDao.saveFinalOrder(order);
+					System.out.println(savedDbOrder.getTotal_price());
 				}else{
-					savedDbOrder = new Order();
-					savedDbOrder.setEnd_time(newEndTime);
+					savedDbOrder = order;
+					System.out.println("line 296:");
+					System.out.println(savedDbOrder.getEnd_time());
+					//savedDbOrder.setEnd_time(newEndTime);
 				}
 
 			}
@@ -296,6 +306,10 @@ public class OrderServiceImpl implements OrderService{
 
 
 		return savedDbOrder;
+	}
+	
+	public Order confirmOrder(Order order){
+		return orderDao.saveFinalOrder(order);
 	}
 
 	public List<Order> showUserHistory(String email,String status) {

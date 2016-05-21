@@ -39,7 +39,12 @@ public class OrderLoggingAspect {
 		
 		if(response.getStatusCode()==HttpStatus.OK){
 			Order order = (Order)response.getBody();
-			System.out.println("Order has been placed by with id "+order.getOrder_id()+" by "+order.getEmail()+" for "+order.getOrder_date()+" "+order.getPickup_time()+" and will be fulfilled by chef with id "+order.getChef_id());
+			if(order != null){
+				System.out.println("Order has been placed by with id "+order.getOrder_id()+" by "+order.getEmail()+" for "+order.getOrder_date()+" "+order.getPickup_time()+" and will be fulfilled by chef with id "+order.getChef_id());
+			}else {
+				System.out.println("Order cannot be fulfilled!!");
+			}
+			
 		}
 	}
 	
