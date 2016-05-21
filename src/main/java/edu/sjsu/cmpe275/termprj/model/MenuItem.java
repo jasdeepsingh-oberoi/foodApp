@@ -29,7 +29,7 @@ public class MenuItem {
         private Integer prep_time;
         @Column
         private Integer is_deleted;
-
+      
     public void setIs_deleted(Integer is_deleted) {
         this.is_deleted = is_deleted;
     }

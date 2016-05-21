@@ -2,6 +2,8 @@ package edu.sjsu.cmpe275.termprj.service.impl;
 
 import edu.sjsu.cmpe275.termprj.dao.MenuItemDao;
 import edu.sjsu.cmpe275.termprj.model.MenuItem;
+import edu.sjsu.cmpe275.termprj.model.MenuItemCount;
+import edu.sjsu.cmpe275.termprj.model.Order;
 import edu.sjsu.cmpe275.termprj.service.MenuItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +42,23 @@ public class MenuItemServiceImpl implements MenuItemService{
 		menuItemDao.delete(id);		
 	}
 
-	/*public void update(MenuItem p) {
-		menuItemDao.update(p);
-	}*/
+	public int update(MenuItem p) {
+		return menuItemDao.update(p);
+	}
 
-	public int add(MenuItem p) {
+	public MenuItem add(MenuItem p) {
 		return menuItemDao.add(p);
+	}
+
+	public MenuItem addImage(MenuItem p) {
+		return menuItemDao.addImage(p);
+	}
+	
+	public List<MenuItemCount> getPopRepByCategory(Integer category,String startDatestring,String endDatestring) {
+		return menuItemDao.getPopRepByCategory(category,startDatestring,endDatestring);
+	}
+	
+	public List<Order> getStatRep(String startDatestring,String endDatestring) {
+		return menuItemDao.getStatRep(startDatestring,endDatestring);
 	}
 }

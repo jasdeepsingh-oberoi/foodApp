@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public int getVerifiedUser(String email){
+	public User getVerifiedUser(String email){
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		User user = null;
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 		}finally{
 			session.close();
 		}
-		return user.isVerified();
+		return user;
 	}
 	public int getUser(String email) {
 		// TODO Auto-generated method stub
@@ -73,16 +73,17 @@ public class UserDaoImpl implements UserDao {
 		List<User> users;
 		int modification = 0;
 		try{
-			String hql = "UPDATE edu.sjsu.cmpe275.termprj.model.User as user set user.isVerified = 1 WHERE user.email = :email and user.verification_code = :verification_code";
+			String hql = "UPDATE edu.sjsu.cmpe275.termprj.model.User as user set user.isVerified = :is_verified WHERE user.email = :email and user.verification_code = :verification_code";
 			Query query = session.createQuery(hql);
-			//query.setInteger("is_verified", 1);
+			query.setString("is_verified", "1");
 			query.setString("email", email);
 			query.setString("verification_code", verification_code);
 			modification = query.executeUpdate();
 			tx.commit();
-			String hql1 = "FROM edu.sjsu.cmpe275.termprj.model.User as user WHERE user.email = :email and user.isVerified = 1";
+			String hql1 = "FROM edu.sjsu.cmpe275.termprj.model.User as user WHERE user.email = :email and user.isVerified = :is_verified";
 			Query query1 = session.createQuery(hql1);
 			query1.setString("email", email);
+			query1.setString("is_verified", "1");
 			query1.setMaxResults(1);
 			users = query1.list();
 			if(users.size()!=0){

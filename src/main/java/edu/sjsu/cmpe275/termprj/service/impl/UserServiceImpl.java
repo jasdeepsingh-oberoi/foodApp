@@ -81,10 +81,17 @@ public class UserServiceImpl implements UserService {
 				fiStream.close();
 				String decryptedPassword = decryptPassword(dbPassword);
 				if(decryptedPassword.equals(user.getPassword())){
-					isVerified = userDao.getVerifiedUser(user.getEmail());
-					if(isVerified==1){
+					User dbUserData = userDao.getVerifiedUser(user.getEmail());
+					System.out.println("is verified? " +dbUserData.getIsVerified());
+					System.out.println("is admin? " +dbUserData.getIsAdmin());
+					if(dbUserData.getIsVerified().equals("1")){
+						user.setIsAdmin(dbUserData.getIsAdmin());
+						System.out.println("in userservice");
+						System.out.println(user.getIsAdmin());
 						return true;
 					}else{
+						//user.setVerification_code(dbUserData.getVerification_code());
+						user.setIsVerified(dbUserData.getIsVerified());
 						return false;
 					}
 				}else{

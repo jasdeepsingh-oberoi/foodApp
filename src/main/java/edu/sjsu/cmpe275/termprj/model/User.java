@@ -19,11 +19,27 @@ import javax.persistence.Table;
 		@Column
 		private String password;
 		@Column(name="is_admin")
-		private int isAdmin;
+		private String isAdmin;
+		public String getIsAdmin() {
+			return isAdmin;
+		}
+
+		public void setIsAdmin(String isAdmin) {
+			this.isAdmin = isAdmin;
+		}
+
+		public String getIsVerified() {
+			return isVerified;
+		}
+
+		public void setIsVerified(String isVerified) {
+			this.isVerified = isVerified;
+		}
+
 		@Column
 		private String verification_code;
 		@Column(name="is_verified")
-		private int isVerified;
+		private String isVerified;
 		
 		public long getId() {
 			return id;
@@ -49,13 +65,13 @@ import javax.persistence.Table;
 			this.password = password;
 		}
 		
-		public int isAdmin() {
+		/*public String isAdmin() {
 			return isAdmin;
 		}
 		
-		public void setAdmin(int isAdmin) {
+		public void setAdmin(String isAdmin) {
 			this.isAdmin = isAdmin;
-		}
+		}*/
 		
 		public String getVerification_code() {
 			return verification_code;
@@ -65,19 +81,19 @@ import javax.persistence.Table;
 			this.verification_code = verification_code;
 		}
 		
-		public int isVerified() {
+		/*public String isVerified() {
 			return isVerified;
 		}
 		
-		public void setVerified(int isVerified) {
+		public void setVerified(String isVerified) {
 			this.isVerified = isVerified;
-		}
+		}*/
 		
 		public User(){
 			
 		}
 		
-		public User(String email, String password, int isAdmin, String verification_code, int isVerified) {
+		public User(String email, String password, String isAdmin, String verification_code, String isVerified) {
 			this.email = email;
 			this.password = password;
 			this.isAdmin = isAdmin;

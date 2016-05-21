@@ -4,9 +4,10 @@
 
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-<script src="<c:url value='/resources/js/app.js' />"></script>
+<%-- <script src="<c:url value='/resources/js/app.js' />"></script> --%>
 <script src="<c:url value='/resources/js/service/user_service.js' />"></script>
 <script
 	src="<c:url value='/resources/js/controller/user_controller.js' />"></script>
@@ -19,9 +20,10 @@
 	
 <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/resources/css/bootstrap.css' />"></link>
 <%-- <link rel="stylesheet" href="<c:url value= '/resouces/css/font-awesome.css' />"></link> --%>
-<link rel="stylesheet" href="<c:url value= '/resouces/css/font-awesome.css' />"></link>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/animate.css"></link>
-<link rel="stylesheet" href="<c:url value = '/resouces/css/theme.css' />"></link>
+<link rel="stylesheet" href="<c:url value= '/resources/css/font-awesome.css' />"></link>
+<link rel="stylesheet" href="<c:url value= '/resources/css/animate.css' />"></link>
+<link rel="stylesheet" href="<c:url value = '/resources/css/theme.css' />"></link>
+
 
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -31,21 +33,21 @@
 
 
 <!--Javascripts-->
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script src="<c:url value= '/resouces/js/modernizr.js' />"></script>
-<script src="<c:url value= '/resouces/js/bootstrap.js' />"></script>
-<script src="<c:url value= 'resouces/js/menustick.js' />"></script>
-<script src="<c:url value= '/resouces/js/parallax.js' />"></script>
-<script src="<c:url value= '/resouces/js/easing.js' />"></script>
-<script src="<c:url value= '/resouces/js/wow.js' />"></script>
-<script src="<c:url value= '/resouces/js/smoothscroll.js' />"></script>
-<script src="<c:url value= '/resouces/js/masonry.js' />"></script>
-<script src="<c:url value= '/resouces/js/imgloaded.js' />"></script>
-<script src="<c:url value= '/resouces/js/classie.js' />"></script>
-<script src="<c:url value= '/resouces/js/colorfinder.js' />"></script>
-<script src="<c:url value= '/resouces/js/gridscroll.js' />"></script>
-<script src="<c:url value= '/resouces/js/contact.js' />"></script>
-<script src="<c:url value= '/resouces/js/common.js' />"></script>
+<script src="<c:url value= '/resources/js/jquery.js' />"></script>
+<script src="<c:url value= '/resources/js/modernizr.js' />"></script>
+<script src="<c:url value= '/resources/js/bootstrap.js' />"></script>
+<script src="<c:url value= '/resources/js/menustick.js' />"></script>
+<script src="<c:url value= '/resources/js/parallax.js' />"></script>
+<script src="<c:url value= '/resources/js/easing.js' />"></script>
+<script src="<c:url value= '/resources/js/wow.js' />"></script>
+<script src="<c:url value= '/resources/js/smoothscroll.js' />"></script>
+<script src="<c:url value= '/resources/js/masonry.js' />"></script>
+<script src="<c:url value= '/resources/js/imgloaded.js' />"></script>
+<script src="<c:url value= '/resources/js/classie.js' />"></script>
+<script src="<c:url value= '/resources/js/colorfinder.js' />"></script>
+<script src="<c:url value= '/resources/js/gridscroll.js' />"></script>
+<script src="<c:url value= '/resources/js/contact.js' />"></script>
+<script src="<c:url value= '/resources/js/common.js' />"></script>
 
 <script type="text/javascript">
 jQuery(function($) {
@@ -82,7 +84,7 @@ $(document).ready( function() {
 		<div class="parallax text-center" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummy1.jpg);">
 			<div class="parallax-pattern-overlay">
 				<div class="container text-center" style="height:580px;padding-top:170px;">
-					<a href="#"><img id="site-title" class=" wow fadeInDown" wow-data-delay="0.0s" wow-data-duration="0.9s" src="<c:url value= '/resouces/img/logo.png' />" alt="logo"/></a>
+					<a href="#"><img id="site-title" class=" wow fadeInDown" wow-data-delay="0.0s" wow-data-duration="0.9s" src="<c:url value= '/resources/img/logo.png' />" alt="logo"/></a>
 					<h2 class="intro wow zoomIn" wow-data-delay="0.4s" wow-data-duration="0.9s">Catering & Special Events</h2>
 				</div>
 			</div>
@@ -118,26 +120,33 @@ $(document).ready( function() {
 	<section class="aboutus" id="aboutus">
 	<div class="container">
 		<div class="heading text-center">
-			<img class="dividerline" src="img/sep.png" alt="">
+			<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 			<h2>About Leroy</h2>
-			<img class="dividerline" src="img/sep.png" alt="">
+			<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 			<h3>Have you ever felt worried that your party will not raise up to your guest expectations? In design, vertical rhythm is the structure that guides a reader's eye through the content. Good vertical rhythm makes a layout more balanced and beautiful and its content more readable. The time signature in sheet music visually depicts a song's rhythm, while for us, the lines of the baseline grid depict the rhythm of our content and give us guidelines.</h3>
 		</div>			
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="papers text-center">
 					<img src="http://wowthemes.net/demo/leroy/img/dummies/18.jpg" alt=""><br/>
-					<a href="#"><b>Download my resume</b></a>
 					<h4 class="notopmarg nobotmarg">John Vandeley</h4>
 					<p>
 						Have you ever felt worried that your party will not raise up to your guest expectations? In design, vertical rhythm is the structure that guides a reader's eye through the content. Good vertical rhythm makes a layout more balanced and beautiful and its content more readable. The time signature in sheet music visually depicts a song's rhythm, while for us, the lines of the baseline grid depict the rhythm of our content and give us guidelines.
 					</p>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="papers text-center">
 					<img src="http://wowthemes.net/demo/leroy/img/dummies/19.jpg" alt=""><br/>
-					<a href="#"><b>Download my resume</b></a>
+					<h4 class="notopmarg nobotmarg">Ron Hersu</h4>
+					<p>
+						Have you ever felt worried that your party will not raise up to your guest expectations? In design, vertical rhythm is the structure that guides a reader's eye through the content. Good vertical rhythm makes a layout more balanced and beautiful and its content more readable. The time signature in sheet music visually depicts a song's rhythm, while for us, the lines of the baseline grid depict the rhythm of our content and give us guidelines.
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="papers text-center">
+					<img src="http://wowthemes.net/demo/leroy/img/dummies/18.jpg" alt=""><br/>
 					<h4 class="notopmarg nobotmarg">Stephanie Hellen</h4>
 					<p>
 						Have you ever felt worried that your party will not raise up to your guest expectations? In design, vertical rhythm is the structure that guides a reader's eye through the content. Good vertical rhythm makes a layout more balanced and beautiful and its content more readable. The time signature in sheet music visually depicts a song's rhythm, while for us, the lines of the baseline grid depict the rhythm of our content and give us guidelines.
@@ -152,9 +161,9 @@ $(document).ready( function() {
 	<section class="specialties" id="specialties">
 	<div class="container">
 		<div class="heading text-center">
-			<img class="dividerline" src="img/sep.png" alt="">
+			<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 			<h2>Our Specialties</h2>
-			<img class="dividerline" src="img/sep.png" alt="">
+			<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 			<h3>Have you ever felt worried that your party will not raise up to your guest expectations? In design, vertical rhythm is the structure that guides a reader's eye through the content. Good vertical rhythm makes a layout more balanced and beautiful and its content more readable. The time signature in sheet music visually depicts a song's rhythm, while for us, the lines of the baseline grid depict the rhythm of our content and give us guidelines.</h3>
 		</div>
 		<div class="row">
@@ -253,9 +262,9 @@ $(document).ready( function() {
 	<section class="gallery" id="gallery">
 		<div class="container">
 			<div class="heading text-center">
-				<img class="dividerline" src="img/sep.png" alt="">
+				<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 				<h2>Events Gallery</h2>
-				<img class="dividerline" src="img/sep.png" alt="">
+				<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 			</div>
 			
 			<div id="grid-gallery" class="grid-gallery">
@@ -386,9 +395,9 @@ $(document).ready( function() {
 	<section class="feedback" id="feedback">
 	<div class="container w960">
 		<div class="heading">
-			<img class="dividerline" src="img/sep.png" alt="">
+			<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 			<h2>Clients Say</h2>
-			<img class="dividerline" src="img/sep.png" alt="">
+			<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 			<h3>Phasellus non dolor nibh. Nullam elementum tellus pretium feugiat.<br>
 			 Cras dictum tellus dui, vitae sollicitudin ipsum tincidunt in. Sed tincidunt tristique enim sed sollcitudin.</h3>
 		</div>
@@ -403,9 +412,9 @@ $(document).ready( function() {
 	<section class="contact" id="contact">
 	<div class="container">
 		<div class="heading">
-				<img class="dividerline" src="img/sep.png" alt="">
+				<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 				<h2>Hire Us</h2>
-				<img class="dividerline" src="img/sep.png" alt="">
+				<img class="dividerline" src="<c:url value= '/resources/img/sep.png' />" alt="">
 				<h3>Phasellus non dolor nibh. Nullam elementum tellus pretium feugiat.<br>
 				 Cras dictum tellus dui, vitae sollicitudin ipsum tincidunt in. Sed tincidunt tristique enim sed sollcitudin.</h3>
 		</div>

@@ -1,7 +1,3 @@
-/**
- * New node file
- */
-
 'use strict';
 
 App.factory('UserService',['$http','$q',function($http,$q){

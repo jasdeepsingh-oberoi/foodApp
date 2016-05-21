@@ -24,8 +24,8 @@ public class UserController {
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User user){
 		
-		user.setAdmin(0);
-		user.setVerified(0);
+		user.setIsAdmin("0");
+		user.setIsVerified("0");
 		
 		
 		/*if (userService.isUserExist(email)) {
@@ -54,6 +54,9 @@ public class UserController {
 		
 		if(userService.checkUser(user)){
 			user.setPassword(null);
+			//user.setAdmin(user.isAdmin());
+			System.out.println("in user controller");
+			System.out.println(user.getIsAdmin());
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}else{
 			user.setPassword(null);

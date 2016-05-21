@@ -7,5 +7,7 @@
 	<session-factory>
 		<mapping class="edu.sjsu.cmpe275.termprj.model.User"/>
 		<mapping class="edu.sjsu.cmpe275.termprj.model.MenuItem"/>
+		<mapping class="edu.sjsu.cmpe275.termprj.model.Order"/>
+		<mapping class="edu.sjsu.cmpe275.termprj.model.UserOrderDetails"/>
 	</session-factory>
 </hibernate-configuration>
