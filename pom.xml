@@ -11,6 +11,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.1.RELEASE</spring.version>
 		<hibernate.version>3.6.9.Final</hibernate.version>
+		<aspectj.version>1.8.4</aspectj.version>
 	</properties>
 	<dependencies>
 		<!-- Spring dependencies -->
@@ -42,6 +43,23 @@
 			<version>3.1.1.RELEASE</version>
 		</dependency>
 		<!-- Spring dependencies -->
+		<!-- Spring AOP + AspectJ -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+		<!-- Spring AOP + AspectJ -->
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
